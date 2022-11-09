@@ -14,17 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('prdouct_ingredients', function (Blueprint $table) {
-            $table->integer('product_id')->unsigned()->index();
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-
-            $table->integer('ingredient_id')->unsigned()->index();
-            $table->foreign('ingredient_id')->references('id')->on('ingredients')->onDelete('cascade');
-
-
-
-            $table->unsignedInteger('product_id');
-            $table->unsignedInteger('ingredient_id');
-
+            $table->primary(['product_id','ingredient_id']);
+            $table->bigInteger('product_id')->unsigned()->index();
+            $table->bigInteger('ingredient_id')->unsigned()->index();
+            $table->foreign('product_id')
+                ->references('id')
+                ->on('products');
+            $table->foreign('ingredient_id')
+                ->references('id')
+                ->on('ingredients');
             $table->integer('amount');
             $table->timestamps();
         });
