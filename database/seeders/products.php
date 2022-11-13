@@ -16,7 +16,9 @@ class products extends Seeder
     public function run()
     {
         product::create([
-            'name' => 'Burger'
+            'id' => 1,
+            'name' => 'Burger',
+            'price' => 10
         ]);
     }
 }
